@@ -5,7 +5,7 @@ import javax.swing.*;
 public class PlayBook {
 
     public static void main(String[] args) {
-        new MyWindow("Welcome back, DUT One");
+        new TimerClock("Welcome back, DUT One");
     }
 }
 
