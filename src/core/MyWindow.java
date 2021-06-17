@@ -8,6 +8,8 @@ import java.awt.event.ActionListener;
 public class MyWindow extends JFrame implements ActionListener {
     private JButton yesButton;
     private JButton noButton;
+    private JLabel nameLabel;
+    private JTextField nameTextField;
 
     public MyWindow(String title) throws HeadlessException {
         super(title);
@@ -19,22 +21,29 @@ public class MyWindow extends JFrame implements ActionListener {
     }
 
     private void bindingWidgetToWindow() {
+        this.getContentPane().add(nameLabel);
+        this.getContentPane().add(nameTextField);
         this.getContentPane().add(yesButton);
         this.getContentPane().add(noButton);
     }
 
     private void setupJFrameParameters() {
-        this.setPreferredSize(new Dimension(500, 350));
+        this.setMaximumSize(new Dimension(150, 140));
+        this.setSize(new Dimension(150, 140));
+        this.setMinimumSize(new Dimension(150, 140));
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
-        this.pack();
+//        this.pack();
         this.setVisible(true);
     }
 
     private void instantiateWidget() {
         yesButton = new JButton("Yes");
         noButton = new JButton("No");
+        nameLabel = new JLabel("Mon nom est DUT 1");
+        nameTextField = new JTextField("Entrez votre nom");
+
     }
 
     private void setupActionListener() {
@@ -49,10 +58,12 @@ public class MyWindow extends JFrame implements ActionListener {
         if (e.getSource() instanceof JButton) {
             button = (JButton) e.getSource();
             if (button.getText().compareToIgnoreCase("Yes") == 0) {
-                JOptionPane.showMessageDialog(null, "Yes");
+                JOptionPane.showMessageDialog(null,
+                        "Bonjour "+nameTextField.getText().toUpperCase());
             }
             if (button.getText().compareToIgnoreCase("No") == 0){
-                JOptionPane.showMessageDialog(null, "No");
+                JOptionPane.showMessageDialog(null,
+                        "No");
             }
         }
     }
